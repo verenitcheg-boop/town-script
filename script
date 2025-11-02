@@ -57,53 +57,6 @@ Section:NewButton("Esp (нажми)", "Нету", function()
   
 end)
 
-Section:NewButton("трейсеры (не оч)", "добавляет линнии к игрокам", function()
-  
-  plrs = game:service'Players'
-lp = plrs.LocalPlayer
-char = lp.Character
-function tracers()
-    for i,v in pairs(plrs:GetPlayers()) do 
-        if v.Character and v.Character:FindFirstChild'HumanoidRootPart' and not v.Character.HumanoidRootPart:FindFirstChild'Attachment' then 
-            beam = Instance.new('Beam', plrs.LocalPlayer.Character.HumanoidRootPart)
-            beam.Width0 = .15
-            beam.Width1 = .15
-            beam.Name = 'Beam'
-            beam.FaceCamera = true
-            beam.Color = ColorSequence.new(v.TeamColor.Color, v.TeamColor.Color)
-            one = Instance.new('Attachment', plrs.LocalPlayer.Character.HumanoidRootPart)
-            two = Instance.new('Attachment', v.Character.HumanoidRootPart)
-            beam.Attachment0 = one
-            beam.Attachment1 = two
-        end
-    end
-end
-tracers()
-_G.tracers2 = workspace.ChildAdded:Connect(function(mdl)
-    if game:service'Players':FindFirstChild(mdl.Name) then
-        wait(.3);repeat wait() until lp.Character and lp.Character:FindFirstChildOfClass'Humanoid' and lp.Character:FindFirstChildOfClass'Humanoid'.Health > 0 tracers()
-    end
-end)
-function humdied()
-    _G.tracers = workspace.ChildRemoved:Connect(function(mdl)
-        if mdl.Name == lp.Name then
-            for i,v in pairs(plrs:GetPlayers()) do
-                if v.Character and v.Character:FindFirstChild'HumanoidRootPart' then 
-                    for k,d in pairs(v.Character:GetChildren()) do
-                        v.Character.HumanoidRootPart:ClearAllChildren() 
-                    end
-                end
-            end
-            repeat wait() until lp.Character and lp.Character:FindFirstChild'HumanoidRootPart'
-            tracers()
-            humdied()
-        end
-    end)
-end
-humdied()
-  
-end)
-
 local Tab = Window:NewTab("Доп. скрипты")
 
 local Seclocal Section = Tab:NewSection("Скрипты:")
