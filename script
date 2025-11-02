@@ -1,0 +1,147 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Robojini/Tuturial_UI_Library/main/UI_Template_1"))()
+local Window = Library.CreateLib("скрипт @yullxx. Town/шутеры")
+local Tab = Window:NewTab("Игрок")
+local Seclocal Section = Tab:NewSection("Флай, флинг")
+
+Section:NewButton("Флай", "y - режим невидимки, t - флай", function()
+
+pcall(function() loadstring(game:HttpGet('https://raw.githubusercontent.com/lilmond/roblox_fly_script/refs/heads/main/latest.lua'))() end)
+
+end)
+
+Section:NewButton("Флай, не убивайма пчела", "v - флай, h - не убиваймая пчела", function()
+
+pcall(function() loadstring(game:HttpGet('https://raw.githubusercontent.com/lilmond/roblox_fly_script/refs/heads/main/unkillable_bee.lua'))() end)
+
+end)
+
+Section:NewButton("Флинг", "g - флинг", function()
+
+pcall(function() loadstring(game:HttpGet('https://raw.githubusercontent.com/lilmond/roblox_fly_script/refs/heads/main/fling_v1.5.lua'))() end)
+
+end)
+
+Section:NewButton("Вехекле Флай", "n - флай, m - невидимость", function()
+
+pcall(function() loadstring(game:HttpGet('https://raw.githubusercontent.com/lilmond/roblox_fly_script/refs/heads/main/v4.2.2.6_vehicle.lua'))() end)
+  
+end)
+
+local Seclocal Section = Tab:NewSection("Скрорость, кастом прыжка")
+
+Section:NewSlider("Скорость", "Нету", 500, 0, function(s) -- 500 (Макс. значение) | 0 (Мин. значение)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+end)
+
+Section:NewSlider("Гравитация", "делает тебя быстрее", 1000, 1, function(s) -- 500 (Макс. значение) | 0 (Мин. значение)
+    game.Players.LocalPlayer.Character.Humanoid.Gravity = s
+end)
+
+local Tab = Window:NewTab("аим функции")
+
+local Seclocal Section = Tab:NewSection("Аимбот (обычный) (Активируется на ПКМ)")
+
+Section:NewButton("Аимбот", "наводка прицела на хед соперника ", function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Exunys/Aimbot-V3/main/src/Aimbot.lua"))()()
+
+end)
+
+local Tab = Window:NewTab("ВХ")
+
+local Seclocal Section = Tab:NewSection("WallHack (чамсы)")
+
+Section:NewButton("Esp (нажми)", "Нету", function()
+  
+  loadstring(game:HttpGet("https://raw.githubusercontent.com/AgungHari/Universal-ESP-For-Roblox/main/ver1.lua"))()
+  
+end)
+
+Section:NewButton("трейсеры (не оч)", "добавляет линнии к игрокам", function()
+  
+  plrs = game:service'Players'
+lp = plrs.LocalPlayer
+char = lp.Character
+function tracers()
+    for i,v in pairs(plrs:GetPlayers()) do 
+        if v.Character and v.Character:FindFirstChild'HumanoidRootPart' and not v.Character.HumanoidRootPart:FindFirstChild'Attachment' then 
+            beam = Instance.new('Beam', plrs.LocalPlayer.Character.HumanoidRootPart)
+            beam.Width0 = .15
+            beam.Width1 = .15
+            beam.Name = 'Beam'
+            beam.FaceCamera = true
+            beam.Color = ColorSequence.new(v.TeamColor.Color, v.TeamColor.Color)
+            one = Instance.new('Attachment', plrs.LocalPlayer.Character.HumanoidRootPart)
+            two = Instance.new('Attachment', v.Character.HumanoidRootPart)
+            beam.Attachment0 = one
+            beam.Attachment1 = two
+        end
+    end
+end
+tracers()
+_G.tracers2 = workspace.ChildAdded:Connect(function(mdl)
+    if game:service'Players':FindFirstChild(mdl.Name) then
+        wait(.3);repeat wait() until lp.Character and lp.Character:FindFirstChildOfClass'Humanoid' and lp.Character:FindFirstChildOfClass'Humanoid'.Health > 0 tracers()
+    end
+end)
+function humdied()
+    _G.tracers = workspace.ChildRemoved:Connect(function(mdl)
+        if mdl.Name == lp.Name then
+            for i,v in pairs(plrs:GetPlayers()) do
+                if v.Character and v.Character:FindFirstChild'HumanoidRootPart' then 
+                    for k,d in pairs(v.Character:GetChildren()) do
+                        v.Character.HumanoidRootPart:ClearAllChildren() 
+                    end
+                end
+            end
+            repeat wait() until lp.Character and lp.Character:FindFirstChild'HumanoidRootPart'
+            tracers()
+            humdied()
+        end
+    end)
+end
+humdied()
+  
+end)
+
+local Tab = Window:NewTab("Доп. скрипты")
+
+local Seclocal Section = Tab:NewSection("Скрипты:")
+
+Section:NewButton("infinity yield", "это доп к скрипту", function()
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+
+end)
+
+Section:NewButton("клавиатура дельты", "нету", function()
+
+loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-delta-keyboard-crack-reupload-20074"))()
+
+end)
+
+Section:NewButton("2 версия клавы", "нету", function()
+
+loadstring(game:HttpGet("https://gist.githubusercontent.com/RedZenXYZ/4d80bfd70ee27000660e4bfa7509c667/raw/da903c570249ab3c0c1a74f3467260972c3d87e6/KeyBoard%2520From%2520Ohio%2520Fr%2520Fr"))()
+
+end)
+
+local Tab = Window:NewTab("остальное")
+
+local Seclocal Section = Tab:NewSection("видимость")
+
+Section:NewButton("fullbright", "делаеть игру светлее", function()
+
+local Light = game:GetService("Lighting")
+
+function dofullbright()
+Light.Ambient = Color3.new(1, 1, 1)
+Light.ColorShift_Bottom = Color3.new(1, 1, 1)
+Light.ColorShift_Top = Color3.new(1, 1, 1)
+end
+
+dofullbright()
+
+Light.LightingChanged:Connect(dofullbright)
+
+end)
